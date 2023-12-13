@@ -1,0 +1,37 @@
+{% extends 'base/startbase.html' %}
+{% block title %}
+
+Forgot Password
+
+{% endblock title %}
+{% block startup %}
+
+<h5>Hello, Expand Your Business</h5>
+                            <h3>REGISTER COMPANY</h3>
+                            <p>Manage your Business with B-Hub, Explore the various features available to smoothly deal with your tasks.Reach to your Customers.Check the Demand.Keep Eye on the sales.</p>
+                            <a href="{% url 'register' %}" class="read-more-1 btn">Register Here</a>
+                            <a href="{% url 'login' %}" class="read-more-1 btn" style="min-width: 189.48px;">Log In</a>
+                            
+
+{% endblock startup %}
+
+{% block rightform %}
+
+<div class="form-left">
+                    <div class="middle">
+                        <h4>Forgot Password?</h4>
+                        <p>Enter your linked email id.</p>
+                    </div>
+                    <form action="" method="post" class="signin-form">
+                        {% csrf_token %}
+                        <div class="form-input">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="" required />
+                        </div>
+                        <button type="submit" class="btn">Recover Password!</button>
+                    </form>
+                    <div class="copy-right text-center">
+                        <p>© Nainesh Rajani 2021. All rights reserved</p>
+                    </div>
+                </div>
+{% endblock rightform %}

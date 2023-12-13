@@ -1,0 +1,60 @@
+{% extends 'base/startbase.html' %}
+{% block title %}
+
+Registration
+
+{% endblock title %}
+
+{% block startup %}
+
+<h5>Welcome,</h5>
+<h3>HAVE ACCOUNT ? </h3>
+<p>Manage your Business with B-Hub, Explore the various features available to smoothly deal with your tasks.Reach to your Customers.Check the Demand.Keep Eye on the sales.</p>
+<a href="{% url 'login' %}" class="read-more-1 btn">Log In</a>
+
+{% endblock startup %}
+
+{% block rightform %}
+
+<div class="form-left">
+     <div class="middle">
+        <h4>Sign Up</h4>
+        <p>Register Your Company, It's Free.</p>
+    </div>
+    <form action="" method="post" class="signin-form">
+    {% csrf_token %}
+        <div class="form-input">
+            <label>Company Name</label>
+            <input type="text" name="name" placeholder="" required />
+        </div>
+        <div class="form-input">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="" required />
+        </div>
+        <div class="form-input">
+            <label>Password</label>
+            <input type="password" name="paswd" placeholder="" required />
+        </div>
+        <div class="form-input">
+            <label>Number</label>
+            <input type="number" name="number" placeholder="" required />
+        </div>
+        <div class="form-input">
+            <label>Address</label>
+            <input type="text" name="address" placeholder="" required />
+        </div>
+        <div class="form-input">
+            <label>Profile Logo</label>
+            <input type="file" name="logo" />
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <div class="copy-right text-center ">
+        <p>© Nainesh Rajani 2021. All rights reserved</p>
+    </div>
+</div>
+
+{% endblock rightform %}
+
+
+

@@ -1,0 +1,50 @@
+{% extends 'base/dashboardbase.html' %}
+{% load static %}
+{% block title %}Products{% endblock title %}
+{% block maincontent %}
+
+<div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"> Update Product </h4>
+                                    <div class="card-body">
+                                        <form class="forms-sample" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername1">Product Name</label>
+                                                <input type="text" class="form-control" name="name" id="exampleInputUsername1" value="{{ prod.product_name }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Price</label>
+                                                <input type="number" class="form-control" name="price" id="exampleInputEmail1" value="{{ prod.product_price }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputMobile">Quantity</label>
+                                                <input type="number" class="form-control" name="quantity" id="exampleInputMobile" value="{{ prod.product_quantity }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Product Image </label>
+                                                {% if prod.product_img %}
+                                                
+                                                <br>
+                                                <img src={{ prod.product_img.url }} class="mr-2" width="150px">
+                                                <br><br>
+                                                
+                                                {% endif %}
+                                                <input type="file" class="form-control" name="pimg" id="exampleInputEmail1" placeholder="Product Image">
+                                            </div>
+                                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock maincontent %}
+
+
+

@@ -1,0 +1,87 @@
+{% extends 'base/dashboardbase.html' %}
+{% load static %}
+{% block title %}Products{% endblock title %}
+{% block maincontent %}
+
+<div class="content-wrapper">
+                    <button type="button" class="btn btn-gradient-primary btn-lg mb-2" id="collapsebtn">Add Product <i class="mdi mdi-basket-fill"></i></button>
+                    <div class="row">
+                        <div class="col-12 grid-margin" id="collapseform">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"> Add Products </h4>
+                                    <div class="card-body">
+                                        <form class="forms-sample" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername1">Product Name</label>
+                                                <input type="text" class="form-control" name="name" id="exampleInputUsername1" placeholder="Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Price</label>
+                                                <input type="number" class="form-control" name="price" id="exampleInputEmail1" placeholder="Price">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputMobile">Quantity</label>
+                                                <input type="number" class="form-control" name="quantity" id="exampleInputMobile" placeholder="Quantity">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Product Image</label>
+                                                <input type="file" class="form-control" name="pimg" id="exampleInputEmail1" placeholder="Product Image">
+                                            </div>
+                                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                            <button class="btn btn-light" id="form_close">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 grid-margin" id="collapsetable">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Products <i class="mdi mdi-basket menu-icon"></i></h4>
+                                    <div class="table-responsive">
+                                        <table class="table table_p">
+                                            <thead>
+                                                <tr>
+                                                    <th> Product Image </th>
+                                                    <th> Product Name </th>
+                                                    <th> Price </th>
+                                                    <th> Quantity </th>
+                                                    <th> Product ID </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            {% for i in prod reversed %}
+                                                <tr>
+                                                    <td>
+                                                        {% if i.product_img %}
+                                                        <img src={{ i.product_img.url }} alt="image">
+                                                        {% else %}
+                                                        <img alt="No Product image">
+                                                        {% endif %}
+                                                    </td>   
+                                                    <td> {{ i.product_name }} </td>
+                                                    <td> {{  i.product_price }} INR </td>
+                                                    <td> {{  i.product_quantity }} </td>
+                                                    <td> ID2021T00{{ forloop.counter }} </td>
+                                                    <td> <a href="{% url 'updateproduct' i.id %}" class="btn btn-inverse-info btn-fw"> Edit </a> </td>
+                                                    <td> <a href="{% url 'deleteproduct' i.id %}" class="btn btn-inverse-danger btn-fw"> Delete </a> </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock maincontent %}
+
+
+

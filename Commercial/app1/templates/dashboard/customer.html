@@ -1,0 +1,86 @@
+{% extends 'base/dashboardbase.html' %}
+{% load static %}
+{% block title %}Customer{% endblock title %}
+{% block maincontent %}
+
+<div class="content-wrapper">
+                    <button type="button" class="btn btn-gradient-primary btn-lg mb-2" id="collapsebtn">Add Customer <i class="mdi mdi-account-plus"></i></button>
+                    <div class="row">
+                        <div class="col-12 grid-margin" id="collapseform">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"> Enter Customer Details </h4>
+                                    <div class="card-body">
+                                        <form class="forms-sample" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername1">Name</label>
+                                                <input type="text" class="form-control" name="name" id="exampleInputUsername1" placeholder="Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputMobile">Mobile</label>
+                                                <input type="text" class="form-control" name="number" id="exampleInputMobile" placeholder="Mobile number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Customer Profile</label>
+                                                <input type="file" class="form-control" name="cimg" id="exampleInputEmail1" placeholder="Profile Image">
+                                            </div>
+                                            <button type="submit" class="btn btn-gradient-primary mr-2" id="customer__submit_btn">Submit</button>
+                                            <button class="btn btn-light" id="form_close">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 grid-margin" id="collapsetable">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Customers <i class="mdi mdi-account-multiple menu-icon"></i></h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th> Sr No. </th>
+                                                    <th> Name </th>
+                                                    <th> Email </th>
+                                                    <th> Number </th>
+                                                    <th> Registered Date </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for i in cust reversed  %}
+                                                <tr>
+                                                    <td> {{ forloop.counter }} </td>
+                                                    <td> 
+                                                    {% if i.customer_profile %}
+                                                        <img src={{ i.customer_profile.url }} class="mr-2" alt="image">
+                                                    {% else %}
+                                                        <img class="mr-2" alt="No image!">
+                                                    {% endif %} 
+                                                    {{  i.customer_name }} </td>
+                                                    <td> {{ i.customer_email }} </td>
+                                                    <td> {{ i.customer_number }} </td>
+                                                    <td> {{ i.customer_regdate }} </td>
+                                                    <td> <a href="{% url 'deletecustomer' i.id %}" class="btn btn-inverse-danger btn-fw"> Delete </a> </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock maincontent %}
+
+
+

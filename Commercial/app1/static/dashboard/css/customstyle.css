@@ -1,0 +1,15 @@
+#collapseform {
+    display: none;
+}
+
+#collapsetable {
+    display: block;
+}
+
+.blockk {
+    display: block !important;
+}
+
+.nonee {
+    display: none !important;
+}
